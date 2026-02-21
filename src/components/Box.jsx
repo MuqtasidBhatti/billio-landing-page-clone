@@ -6,8 +6,8 @@ import Box3 from "../assets/img/Box3.png";
 
 const Box = () => {
     return (
-        <section className='bg-blue-900'>
-            <h2 className='text-center font-bold text-4xl text-white '>
+        <section className='bg-[#1b2268] '>
+            <h2 className='text-center font-bold text-4xl text-white mt-10 '>
                 Why We {" "}
                 <span className='text-orange-500 underline'>Exist</span>
             </h2>

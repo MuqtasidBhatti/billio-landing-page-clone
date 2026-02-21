@@ -10,7 +10,7 @@ const Hero = () => {
 
     const handleAdd = () => {
         if (!input) {
-            setError("Please Enter your email first")
+            setError("Email required")
         } else if (input) {
             setMessage("Free Trial Link has been sent to your email")
         }

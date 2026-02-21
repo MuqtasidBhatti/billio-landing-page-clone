@@ -1,20 +1,18 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Navbar from './components/Navbar'
-import { Route, Routes } from 'react-router-dom'
 import Home from './components/Home'
-import About from './components/About'
-import Contact from './components/Contact'
+import SignUp from './components/SignUp'
+
 
 const App = () => {
+  const [showModal, setShowModal] = useState(false)
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+
   return (
     <div>
-      <Navbar/>
-      <Routes>
-        <Route path='/' element={<Home/>} />
-        <Route path='/aboutUs' element={<About/>} />
-        <Route path='/contact' element={<Contact/>} />
-      </Routes>
-
+      <Navbar setShowModal={setShowModal} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
+      <Home />
+      {showModal && <SignUp setShowModal={setShowModal} setIsLoggedIn={setIsLoggedIn} />}
     </div>
   )
 }

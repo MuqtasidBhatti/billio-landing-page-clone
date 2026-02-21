@@ -1,32 +1,43 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 
-
-const Navbar = () => {
+const Navbar = ({ setShowModal, isLoggedIn, setIsLoggedIn }) => {
     return (
-        <nav className="absolute top-0 left-0 w-full z-50 font-bold">
+        <nav className="absolute top-0 left-0 w-full z-50">
             <div className="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center text-white">
 
-                <h3 className="text-2xl font-bold">
+                <h3 className="text-3xl font-bold cursor-pointer">
                     billio<span className="text-orange-500">.</span>
                 </h3>
 
-                <div className='flex justify-center gap-8 text-sm'>
-                    <Link to="/">Home</Link>
-                    <br />
-                    <Link to="/aboutUs">About Us</Link>
-                    <br />
-                    <Link to="/services">Services</Link>
-                    <br />
-                    <Link to="/investment">Investment</Link>
-                    <br />
-                    <Link to="/partners">Partners</Link>
-                    <br />
-                    <Link to="/blog">Blog</Link>
-                    <br />
-                    <Link to="/contact">Contact</Link>
-                    <br />
-                    <button className="bg-white text-orange-500 px-5 py-2 rounded-full font-bold cursor-pointer">SIGNUP</button>
+                <div className="flex items-center gap-8 text-sm font-medium">
+
+                    <a href="#home" className="hover:text-orange-400 transition">
+                        Home
+                    </a>
+
+                    <a href="#about" className="hover:text-orange-400 transition">
+                        About Us
+                    </a>
+
+                    <a href="#services" className="hover:text-orange-400 transition">
+                        Services
+                    </a>
+
+                    <a href="#contact" className="hover:text-orange-400 transition">
+                        Contact
+                    </a>
+
+                    {isLoggedIn ? (
+                        <button onClick={() => setIsLoggedIn(false)}className="bg-white text-orange-500 px-5 py-2 rounded-full font-bold hover:bg-orange-100 transition cursor-pointer">Logout</button>
+                    ) : (
+
+                        <button
+                            onClick={() => setShowModal(true)}
+                            className="bg-white text-orange-500 px-5 py-2 rounded-full font-bold hover:bg-orange-100 transition cursor-pointer"
+                        >
+                            SIGN UP
+                        </button>
+                    )}
                 </div>
             </div>
         </nav>

@@ -37,19 +37,19 @@ const Contact = () => {
     return () => clearTimeout(timeout)
   }, [successMsg])
 
-
+ 
   return (
-    <section className="py-20 px-6 md:px-16 bg-white">
+    <section className="py-14 sm:py-16 md:py-20 px-4 sm:px-6 md:px-12 lg:px-16 bg-white">
 
-      <div className="text-center mb-12">
-        <h2 className='text-3xl md:text-4xl font-bold'>
+      <div className="text-center mb-10 sm:mb-12">
+        <h2 className='text-2xl sm:text-3xl md:text-4xl font-bold'>
           <span className='text-orange-500'>Contact</span> Us</h2>
-        <p className="text-gray-500 mt-2">
+        <p className="text-gray-500 mt-2 text-sm sm:text-base">
           We’d love to hear from you
         </p>
       </div>
 
-      <div className="max-w-3xl mx-auto bg-white p-8 rounded-2xl shadow-sm">
+      <div className="max-w-3xl mx-auto bg-white p-6 sm:p-8 rounded-2xl shadow-sm">
 
         <div className="flex flex-col gap-5">
 
@@ -57,14 +57,15 @@ const Contact = () => {
             type="text"
             value={name}
             placeholder="Your Name"
-            className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400"
+            className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400 text-sm sm:text-base"
             onChange={(e) => setName(e.target.value)}
           />
 
           <input
             type="email"
             placeholder="Your Email"
-            className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400"
+            className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400
+            text-sm sm:text-base"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
@@ -74,14 +75,15 @@ const Contact = () => {
             type=""
             value={message}
             placeholder="Your Message"
-            className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400"
+            className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400
+            min-h-30 resize-none text-sm sm:text-base"
             onChange={(e) => setMessage(e.target.value)}
           />
 
-          <p className='text-center text-red-500'>{error}</p>
-          <p className='text-center text-green-500'>{successMsg}</p>
+          {error && <p className='text-center text-red-500 text-sm'>{error}</p>}
+          {successMsg && <p className='text-center text-green-500 text-sm'>{successMsg}</p>}
 
-          <button onClick={handleClick} className="bg-orange-500 text-white py-3 rounded-lg font-semibold hover:bg-orange-600 transition cursor-pointer">
+          <button onClick={handleClick} className="bg-orange-500 text-white py-3 rounded-lg font-semibold hover:bg-orange-600 transition-all duration-300 cursor-pointer">
             Send Message
           </button>
 

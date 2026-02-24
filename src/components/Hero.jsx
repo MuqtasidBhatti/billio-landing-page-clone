@@ -18,35 +18,59 @@ const Hero = () => {
     }
 
     useEffect(() => {
-        const timeout = setTimeout(() => {
-            setMessage("")
-            setError("")
-        }, 1500)
-        return () => clearTimeout(timeout)
+        if (error || message) {
 
-    }, [error,message])
+            const timeout = setTimeout(() => {
+                setMessage("")
+                setError("")
+            }, 1500)
+            return () => clearTimeout(timeout)
+        }
+    }, [error, message])
     return (
-        <div className="h-screen bg-cover bg-center flex items-center"
-            style={{ backgroundImage: `url(${heroImage})` }}>
 
-            <div className="w-full px-20">
-                <div className="max-w-xl" >
-                    <h2 className="text-4xl md:text-5xl font-bold text-white leading-tight">Billios Are A Simpler, smarter Way To Invest.</h2>
-                    <p className="text-white/80 mt-4 text-lg">Get AI-driven stock portfolios based on your investment goals for the future.</p>
+        <div id="home" className="relative w-full h-screen overflow-hidden ">
 
+            <img
+                src={heroImage}
+                alt="Hero"
+                className="w-full h-full object-cover object-bottom"
+            />
+
+
+            <div className="absolute inset-0 bg-linear-to-b from-black/30 via-black/10 to-transparent flex items-center px-4 sm:px-6 md:px-12 lg:px-20">
+
+                <div className="relative w-full max-w-7xl mx-20">
+
+                    <div className="max-w-xl text-center md:text-left mx-auto md:mx-0" >
+                        <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-white leading-tight">
+                            <span className='text-orange-500'>Billios </span>
+                            Are A Simpler, smarter Way To Invest.
+                        </h2>
+
+                        <p className="text-white/80 mt-4 text-sm sm:text-base md:text-lg">Get AI-driven stock portfolios based on your investment goals for the future.</p>
+                    </div>
+
+                    <div className="mt-8 flex flex-col sm:flex-row gap-3 bg-black/30 backdrop-blur-md border border-white/40 border-dashed rounded-xl sm:rounded-3xl w-full max-w-xl mx-auto md:mx-0">
+                        <input
+                            type="text"
+                            placeholder="Enter your Email"
+                            className="flex-1 px-4 py-3 bg-transparent text-white placeholder-white/70 focus:outline-none"
+                            value={input}
+                            onChange={(e) => setInput(e.target.value)}
+                        />
+
+                        <button
+                            onClick={handleAdd}
+                            className="bg-orange-500 hover:bg-orange-600 transition text-white px-6 py-3 rounded-3xl font-medium cursor-pointer whitespace-nowrap">Free Trial</button>
+                    </div>
+
+                    <div className="text-center md:text-left max-w-xl mx-auto md:mx-0">
+                        <p className='text-red-700 font-medium mt-3'>{error}</p>
+                        <p className='text-green-700 font-medium mt-3'>{message}</p>
+                    </div>
                 </div>
-                <div className="mt-6 flex flex-col sm:flex-row gap-4 text-white border border-dashed rounded-3xl w-xl">
-                    <input
-                        type="text"
-                        placeholder="Enter your Email"
-                        className="flex-1 px-4 py-2 text-white placeholder-white/70 focus:outline-none"
-                        value={input}
-                        onChange={(e) => setInput(e.target.value)}
-                    />
-                    <button onClick={handleAdd} className="bg-orange-500 hover:bg-orange-600 transition text-white px-6 py-3 rounded-3xl font-medium cursor-pointer">Free Trial</button>
-                </div>
-                <p className='text-red-700 font-medium m-3'>{error}</p>
-                <p className='text-green-700 font-medium m-3'>{message}</p>
+
             </div>
         </div>
     )

@@ -2,31 +2,32 @@ import React from 'react'
 
 const About = () => {
   return (
-    <section className="py-16 bg-gray-50">
+    <section className="py-12 sm:py-16 bg-gray-50">
 
-      <div className='text-center mb-12'>
-        <h2 className="text-3xl font-bold md:text-4xl">
+      <div className='text-center mb-10 sm:mb-12 px-4'>
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold">
           <span className='text-orange-500 underline'>About</span> Us
         </h2>
 
-        <p className="text-gray-500 mt-3">
+        <p className="text-gray-500 mt-3 text-sm sm:text-base">
           Building smarter ways to invest for everyone.
         </p>
       </div>
 
-      <div className='max-w-6xl mx-auto grid md: grid-cols-2 gap-10 items-center'>
+      <div className='max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-2 gap-10 items-center'>
 
         <div>
-          <h3 className="text-2xl font-semibold mb-4">
+          <h3 className="text-xl font-semibold mb-4">
             Simple. Smart. Accessible Investing
           </h3>
 
-          <p className="text-gray-600 leading-relaxed"> We believe investing should not be complicated or limited to experts. That’s why we design solutions that are easy to use, transparent, and built for real-world results.</p>
+          <p className="text-gray-600 leading-relaxed mb-4 text-sm sm:text-base"> We believe investing should not be complicated or limited to experts. That’s why we design solutions that are easy to use, transparent, and built for real-world results.</p>
 
-          <p className="text-gray-600 leading-relaxed">
+          <p className="text-gray-600 leading-relaxed text-sm sm:text-base">
             We believe investing should not be complicated or limited to experts. That’s why we design solutions that are easy to use, transparent, and built for real-world results.
           </p>
         </div>
+
 
         <div className='grid gap-6'>
           <div className='p-5 bg-white rounded-xl shadow-sm'>
@@ -50,8 +51,6 @@ const About = () => {
             </p>
           </div>
         </div>
-
-
       </div>
     </section>
   )

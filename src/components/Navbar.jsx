@@ -1,34 +1,49 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { motion, AnimatePresence } from "framer-motion";
 
 const Navbar = ({ setShowModal, isLoggedIn, setIsLoggedIn }) => {
+
+    const [isOpen, setIsOpen] = useState(false)
+    const [scrolled, setScrolled] = useState(false)
+
+    useEffect(() => {
+        const handleScrol = () => {
+            setScrolled(window.scrollY > 20);
+        };
+
+        window.addEventListener("scroll", handleScrol);
+        return () => window.removeEventListener("scroll", handleScrol)
+    }, [])
+
     return (
-        <nav className="absolute top-0 left-0 w-full z-50">
+        <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${scrolled
+            ? "backdrop-blur-lg bg-black/40 shadow-lg"
+            : "bg-transparent"
+            }`}
+        >
             <div className="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center text-white">
 
-                <h3 className="text-3xl font-bold cursor-pointer">
+                <h3 className="text-3xl font-bold cursor-pointer select-none">
                     billio<span className="text-orange-500">.</span>
                 </h3>
 
-                <div className="flex items-center gap-8 text-sm font-medium">
+                <div className="hidden md:flex items-center gap-8 text-sm font-medium">
 
-                    <a href="#home" className="hover:text-orange-400 transition">
-                        Home
-                    </a>
+                    {["Home", "About Us", "Services", "Contact"].map(item => (
+                        <a
+                            key={item}
+                            href={`#${item.toLowerCase().replace(" ", "")}`}
+                            className="hover:text-orange-400 transition"
+                        >
+                            {item}
+                        </a>
+                    ))}
 
-                    <a href="#about" className="hover:text-orange-400 transition">
-                        About Us
-                    </a>
-
-                    <a href="#services" className="hover:text-orange-400 transition">
-                        Services
-                    </a>
-
-                    <a href="#contact" className="hover:text-orange-400 transition">
-                        Contact
-                    </a>
 
                     {isLoggedIn ? (
-                        <button onClick={() => setIsLoggedIn(false)}className="bg-white text-orange-500 px-5 py-2 rounded-full font-bold hover:bg-orange-100 transition cursor-pointer">Logout</button>
+                        <button
+                            onClick={() => setIsLoggedIn(false)}
+                            className="bg-white text-orange-500 px-5 py-2 rounded-full font-bold hover:bg-orange-100 transition cursor-pointer">Logout</button>
                     ) : (
 
                         <button
@@ -38,8 +53,49 @@ const Navbar = ({ setShowModal, isLoggedIn, setIsLoggedIn }) => {
                             SIGN UP
                         </button>
                     )}
+
                 </div>
+                <button
+                    aria-label="Toggle Menu"
+                    className='md:hidden text-2xl z-50'
+                    onClick={() => setIsOpen(!isOpen)}
+                >
+                    {isOpen ? "✕" : "☰"}
+                </button>
+
             </div>
+            <AnimatePresence>
+
+                {isOpen && (
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="fixed inset-0 bg-black/40 md:hidden"
+                        onClick={() => setIsOpen(false)}
+                    />
+                )}
+
+                {isOpen && (
+                    <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.3 }}
+                        className='md:hidden absolute top-full left-0 w-full  bg-blue-950 text-white  flex flex-col items-center gap-6 py-6 shadow-xl'>
+                        {["Home", "About", "Services", "Contact"].map(item => (
+                            <a
+                                key={item}
+                                href={`#${item.toLowerCase().replace(" ", "")}`}
+                                className='hover:text-orange-500 transition'
+                                onClick={() => setIsOpen(false)}
+                            >
+                                {item}
+                            </a>
+                        ))}
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </nav>
     )
 }

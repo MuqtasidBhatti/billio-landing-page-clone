@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from "framer-motion";
 
+
 const Navbar = ({ setShowModal, isLoggedIn, setIsLoggedIn }) => {
 
     const [isOpen, setIsOpen] = useState(false)
@@ -83,7 +84,7 @@ const Navbar = ({ setShowModal, isLoggedIn, setIsLoggedIn }) => {
                         exit={{ height: 0, opacity: 0 }}
                         transition={{ duration: 0.3 }}
                         className='md:hidden absolute top-full left-0 w-full  bg-blue-950 text-white  flex flex-col items-center gap-6 py-6 shadow-xl'>
-                        {["Home", "About", "Services", "Contact"].map(item => (
+                        {["Home", "About Us", "Services", "Contact"].map(item => (
                             <a
                                 key={item}
                                 href={`#${item.toLowerCase().replace(" ", "")}`}
@@ -93,6 +94,26 @@ const Navbar = ({ setShowModal, isLoggedIn, setIsLoggedIn }) => {
                                 {item}
                             </a>
                         ))}
+
+                        {isLoggedIn ? (
+                            <button onClick={() => {
+                                setIsLoggedIn(false)
+                                setIsOpen(false)
+                            }}
+                                className='bg-white text-orange-500 px-6 py-2 rounded-full font-bold hover:bg-orange-100 transition'
+                            >
+                                Logout
+                            </button>
+                        ) : (
+                            <button onClick={() => {
+                                setIsOpen(false)
+                                setShowModal(true)
+                            }}
+                                className='bg-white text-orange-500 px-6 py-2 rounded-full font-bold hover:bg-orange-100 transition'
+                            >
+                                SIGN UP
+                            </button>
+                        )}
                     </motion.div>
                 )}
             </AnimatePresence>

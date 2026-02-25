@@ -22,19 +22,10 @@ const Navbar = ({ setShowModal, isLoggedIn, setIsLoggedIn }) => {
         const section = document.getElementById(sectionId);
 
         if (section) {
-            const yOffset = -80; // Adjust for fixed navbar height
-            const y =
-                section.getBoundingClientRect().top +
-                window.pageYOffset +
-                yOffset;
-
-            window.scrollTo({ top: y, behavior: "smooth" });
+            section.scrollIntoView({ behavior: "smooth" });
         }
 
-        // Delay closing for mobile smoothness
-        setTimeout(() => {
-            setIsOpen(false);
-        }, 150);
+        setIsOpen(false);
     };
 
     const navItems = ["Home", "About Us", "Services", "Contact"];

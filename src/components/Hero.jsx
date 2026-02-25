@@ -40,7 +40,7 @@ const Hero = () => {
 
             <div className="absolute inset-0 bg-linear-to-b from-black/30 via-black/10 to-transparent flex items-center px-4 sm:px-6 md:px-12 lg:px-20">
 
-                <div className="relative w-full max-w-7xl mx-20">
+                <div className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-12 lg:px-8">
 
                     <div className="max-w-xl text-center md:text-left mx-auto md:mx-0" >
                         <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-white leading-tight">

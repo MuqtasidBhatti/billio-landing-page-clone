@@ -37,7 +37,7 @@ const Hero = () => {
             />
 
 
-            <div className="absolute inset-0 bg-linear-to-b from-black/80 via-black/60 to-black/30 md:from-black/60 md:via-black/40 md:to-transparent flex items-center px-4 sm:px-6 md:px-12 lg:px-20">
+            <div className="absolute inset-0 bg-linear-to-b from-black/30 via-black/30  md:from-black/60 md:via-black/40 md:to-transparent flex items-center px-4 sm:px-6 md:px-12 lg:px-20">
 
                 <div className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-12 lg:px-8">
 

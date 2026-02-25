@@ -8,24 +8,36 @@ const Navbar = ({ setShowModal, isLoggedIn, setIsLoggedIn }) => {
     const [scrolled, setScrolled] = useState(false)
 
     useEffect(() => {
-        const handleScrol = () => {
+        const handleScroll = () => {
             setScrolled(window.scrollY > 20);
         };
 
-        window.addEventListener("scroll", handleScrol);
-        return () => window.removeEventListener("scroll", handleScrol)
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll)
     }, [])
 
 
     const handleScrollToSection = (item) => {
         const sectionId = item.toLowerCase().replace(" ", "");
-        const section = document.getElementById(sectionId);
-
-        if (section) {
-            section.scrollIntoView({ behavior: "smooth" });
-        }
 
         setIsOpen(false);
+
+        setTimeout(() => {
+            const section = document.getElementById(sectionId);
+            
+            if (section) {
+                const navbarHeight = 80; // adjust if your navbar height changes
+                const y =
+                    section.getBoundingClientRect().top +
+                    window.pageYOffset -
+                    navbarHeight;
+
+                window.scrollTo({
+                    top: y,
+                    behavior: "smooth",
+                });
+            }
+        }, 200);
     };
 
     const navItems = ["Home", "About Us", "Services", "Contact"];
@@ -38,16 +50,17 @@ const Navbar = ({ setShowModal, isLoggedIn, setIsLoggedIn }) => {
         >
             <div className="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center text-white">
 
-                <h3 className="text-3xl font-bold cursor-pointer select-none">
+                <h3 className="text-3xl font-bold cursor-pointer select-none"
+                    onClick={() => handleScrollToSection("Home")}
+                >
                     billio<span className="text-orange-500">.</span>
                 </h3>
 
                 <div className="hidden md:flex items-center gap-8 text-sm font-medium">
 
-                    {["Home", "About Us", "Services", "Contact"].map(item => (
+                    {navItems.map(item => (
                         <button
                             key={item}
-                            href={`#${item.toLowerCase().replace(" ", "")}`}
                             className="hover:text-orange-400 transition cursor-pointer bg-transparent"
                             onClick={() => handleScrollToSection(item)}
                         >

@@ -29,7 +29,7 @@ const Hero = () => {
     }, [error, message])
     return (
 
-        <div id="home" className="relative w-full min-h-svh overflow-hidden ">
+        <div id="home" className="relative w-full h-screen overflow-hidden ">
 
             <img
                 src={heroImage}

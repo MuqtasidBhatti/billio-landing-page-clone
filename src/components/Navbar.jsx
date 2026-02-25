@@ -16,6 +16,29 @@ const Navbar = ({ setShowModal, isLoggedIn, setIsLoggedIn }) => {
         return () => window.removeEventListener("scroll", handleScrol)
     }, [])
 
+
+    const handleScrollToSection = (item) => {
+        const sectionId = item.toLowerCase().replace(" ", "");
+        const section = document.getElementById(sectionId);
+
+        if (section) {
+            const yOffset = -80; // Adjust for fixed navbar height
+            const y =
+                section.getBoundingClientRect().top +
+                window.pageYOffset +
+                yOffset;
+
+            window.scrollTo({ top: y, behavior: "smooth" });
+        }
+
+        // Delay closing for mobile smoothness
+        setTimeout(() => {
+            setIsOpen(false);
+        }, 150);
+    };
+
+    const navItems = ["Home", "About Us", "Services", "Contact"];
+
     return (
         <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${scrolled
             ? "backdrop-blur-lg bg-black/40 shadow-lg"
@@ -34,16 +57,8 @@ const Navbar = ({ setShowModal, isLoggedIn, setIsLoggedIn }) => {
                         <button
                             key={item}
                             href={`#${item.toLowerCase().replace(" ", "")}`}
-                            className="hover:text-orange-400 transition cursor-pointer"
-                            onClick={() => {
-                                const sectionId = item.toLowerCase().replace(" ", "")
-                                const section = document.getElementById(sectionId)
-
-                                if (section) {
-                                    section.scrollIntoView({ behavior: "smooth" })
-                                }
-                                setIsOpen(false)
-                            }}
+                            className="hover:text-orange-400 transition cursor-pointer bg-transparent"
+                            onClick={() => handleScrollToSection(item)}
                         >
                             {item}
                         </button>
@@ -53,7 +68,10 @@ const Navbar = ({ setShowModal, isLoggedIn, setIsLoggedIn }) => {
                     {isLoggedIn ? (
                         <button
                             onClick={() => setIsLoggedIn(false)}
-                            className="bg-white text-orange-500 px-5 py-2 rounded-full font-bold hover:bg-orange-100 transition cursor-pointer">Logout</button>
+                            className="bg-white text-orange-500 px-5 py-2 rounded-full font-bold hover:bg-orange-100 transition cursor-pointer"
+                        >
+                            Logout
+                        </button>
                     ) : (
 
                         <button
@@ -63,8 +81,8 @@ const Navbar = ({ setShowModal, isLoggedIn, setIsLoggedIn }) => {
                             SIGN UP
                         </button>
                     )}
-
                 </div>
+
                 <button
                     aria-label="Toggle Menu"
                     className='md:hidden text-2xl z-50'
@@ -93,38 +111,31 @@ const Navbar = ({ setShowModal, isLoggedIn, setIsLoggedIn }) => {
                         exit={{ height: 0, opacity: 0 }}
                         transition={{ duration: 0.3 }}
                         className='md:hidden absolute top-full left-0 w-full  bg-blue-950 text-white flex flex-col items-center gap-6 py-6 shadow-xl z-50'>
-                        {["Home", "About Us", "Services", "Contact"].map(item => (
+
+                        {navItems.map((item) => (
                             <button
                                 key={item}
                                 className="hover:text-orange-500 transition cursor-pointer bg-transparent"
-                                onClick={() => {
-                                    const sectionId = item.toLowerCase().replace(" ", "")
-                                    const section = document.getElementById(sectionId)
-
-                                    if (section) {
-                                        section.scrollIntoView({ behavior: "smooth" })
-                                    }
-
-                                    setIsOpen(false)
-                                }}
+                                onClick={() => handleScrollToSection(item)}
                             >
                                 {item}
                             </button>
                         ))}
 
                         {isLoggedIn ? (
-                            <button onClick={() => {
-                                setIsLoggedIn(false)
-                                setIsOpen(false)
-                            }}
+                            <button
+                                onClick={() => {
+                                    setIsLoggedIn(false)
+                                    setIsOpen(false)
+                                }}
                                 className='bg-white text-orange-500 px-6 py-2 rounded-full font-bold hover:bg-orange-100 transition'
                             >
                                 Logout
                             </button>
                         ) : (
                             <button onClick={() => {
-                                setIsOpen(false)
                                 setShowModal(true)
+                                setIsOpen(false)
                             }}
                                 className='bg-white text-orange-500 px-6 py-2 rounded-full font-bold hover:bg-orange-100 transition'
                             >

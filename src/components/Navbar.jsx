@@ -35,12 +35,12 @@ const Navbar = ({ setShowModal, isLoggedIn, setIsLoggedIn }) => {
                             key={item}
                             href={`#${item.toLowerCase().replace(" ", "")}`}
                             className="hover:text-orange-400 transition cursor-pointer"
-                            onClick={() =>{
+                            onClick={() => {
                                 const sectionId = item.toLowerCase().replace(" ", "")
                                 const section = document.getElementById(sectionId)
 
-                                if(section) {
-                                    section.scrollIntoView({ behavior: "smooth"})
+                                if (section) {
+                                    section.scrollIntoView({ behavior: "smooth" })
                                 }
                                 setIsOpen(false)
                             }}
@@ -94,14 +94,22 @@ const Navbar = ({ setShowModal, isLoggedIn, setIsLoggedIn }) => {
                         transition={{ duration: 0.3 }}
                         className='md:hidden absolute top-full left-0 w-full  bg-blue-950 text-white flex flex-col items-center gap-6 py-6 shadow-xl z-50'>
                         {["Home", "About Us", "Services", "Contact"].map(item => (
-                            <a
+                            <button
                                 key={item}
-                                href={`#${item.toLowerCase().replace(" ", "")}`}
-                                className='hover:text-orange-500 transition'
-                                onClick={() => setIsOpen(false)}
+                                className="hover:text-orange-500 transition cursor-pointer bg-transparent"
+                                onClick={() => {
+                                    const sectionId = item.toLowerCase().replace(" ", "")
+                                    const section = document.getElementById(sectionId)
+
+                                    if (section) {
+                                        section.scrollIntoView({ behavior: "smooth" })
+                                    }
+
+                                    setIsOpen(false)
+                                }}
                             >
                                 {item}
-                            </a>
+                            </button>
                         ))}
 
                         {isLoggedIn ? (

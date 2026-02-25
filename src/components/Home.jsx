@@ -23,15 +23,15 @@ const Home = () => {
                 </div>
             </div>
 
-            <div id='aboutus' className="pt-24">
+            <div id='aboutus' className="scroll-mt-28">
                 <About />
             </div>
 
-            <div id='services' className="pt-24">
+            <div id='services' className="scroll-mt-28">
                 <Services />
             </div>
 
-            <div id='contact' className="pt-24" >
+            <div id='contact' className="scroll-mt-28">
                 <Contact />
             </div>
 

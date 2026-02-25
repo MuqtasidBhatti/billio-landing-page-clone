@@ -29,26 +29,25 @@ const Hero = () => {
     }, [error, message])
     return (
 
-        <div id="home" className="relative w-full min-h-screen scroll-mt-28">
-
+       <div id="home" className="relative w-full min-h-screen md:h-screen scroll-mt-28">
             <img
                 src={heroImage}
                 alt="Hero"
-                className="w-full h-full object-cover object-bottom"
+                className="absolute inset-0 w-full h-full object-cover object-bottom"
             />
 
 
-            <div className="absolute inset-0 bg-linear-to-b from-black/30 via-black/10 to-transparent flex items-center px-4 sm:px-6 md:px-12 lg:px-20">
+            <div className="absolute inset-0 bg-linear-to-b from-black/80 via-black/60 to-black/30 md:from-black/60 md:via-black/40 md:to-transparent flex items-center px-4 sm:px-6 md:px-12 lg:px-20">
 
                 <div className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-12 lg:px-8">
 
                     <div className="max-w-xl text-center md:text-left mx-auto md:mx-0" >
-                        <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-white leading-tight">
+                        <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-white drop-shadow-lg leading-tight">
                             <span className='text-orange-500'>Billios </span>
                             Are A Simpler, smarter Way To Invest.
                         </h2>
 
-                        <p className="text-white/80 mt-4 text-sm sm:text-base md:text-lg">Get AI-driven stock portfolios based on your investment goals for the future.</p>
+                        <p className="text-white/90 mt-4 text-sm sm:text-base md:text-lg">Get AI-driven stock portfolios based on your investment goals for the future.</p>
                     </div>
 
                     <div className="mt-8 flex flex-col sm:flex-row gap-3 bg-black/30 backdrop-blur-md border border-white/40 border-dashed rounded-xl sm:rounded-3xl w-full max-w-xl mx-auto md:mx-0">

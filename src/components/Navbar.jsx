@@ -34,7 +34,7 @@ const Navbar = ({ setShowModal, isLoggedIn, setIsLoggedIn }) => {
                         <button
                             key={item}
                             href={`#${item.toLowerCase().replace(" ", "")}`}
-                            className="hover:text-orange-400 transition"
+                            className="hover:text-orange-400 transition cursor-pointer"
                             onClick={() =>{
                                 const sectionId = item.toLowerCase().replace(" ", "")
                                 const section = document.getElementById(sectionId)
@@ -81,7 +81,7 @@ const Navbar = ({ setShowModal, isLoggedIn, setIsLoggedIn }) => {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        className="fixed inset-0 bg-black/40 md:hidden"
+                        className="fixed inset-0 bg-black/40 md:hidden z-40"
                         onClick={() => setIsOpen(false)}
                     />
                 )}
@@ -92,7 +92,7 @@ const Navbar = ({ setShowModal, isLoggedIn, setIsLoggedIn }) => {
                         animate={{ height: "auto", opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}
                         transition={{ duration: 0.3 }}
-                        className='md:hidden absolute top-full left-0 w-full  bg-blue-950 text-white  flex flex-col items-center gap-6 py-6 shadow-xl'>
+                        className='md:hidden absolute top-full left-0 w-full  bg-blue-950 text-white flex flex-col items-center gap-6 py-6 shadow-xl z-50'>
                         {["Home", "About Us", "Services", "Contact"].map(item => (
                             <a
                                 key={item}

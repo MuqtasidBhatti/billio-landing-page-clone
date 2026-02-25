@@ -31,13 +31,22 @@ const Navbar = ({ setShowModal, isLoggedIn, setIsLoggedIn }) => {
                 <div className="hidden md:flex items-center gap-8 text-sm font-medium">
 
                     {["Home", "About Us", "Services", "Contact"].map(item => (
-                        <a
+                        <button
                             key={item}
                             href={`#${item.toLowerCase().replace(" ", "")}`}
                             className="hover:text-orange-400 transition"
+                            onClick={() =>{
+                                const sectionId = item.toLowerCase().replace(" ", "")
+                                const section = document.getElementById(sectionId)
+
+                                if(section) {
+                                    section.scrollIntoView({ behavior: "smooth"})
+                                }
+                                setIsOpen(false)
+                            }}
                         >
                             {item}
-                        </a>
+                        </button>
                     ))}
 
 

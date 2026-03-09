@@ -7,8 +7,8 @@ A fully responsive **landing page clone of Billio**, an AI-driven investment pla
 
 ## 📸 Preview
 
-![Desktop Preview](./public/screenshots/desktop.png)
-![Mobile Preview](./public/screenshots/mobile.png)
+<img src="./public/screenshots/desktop.png" width="100%" alt="Desktop Preview" />
+<img src="./public/screenshots/mobile.png" width="350" alt="Mobile Preview" />
 
 ## ✨ Features
 
